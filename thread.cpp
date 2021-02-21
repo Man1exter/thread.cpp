@@ -26,7 +26,6 @@ using namespace chrono;
 auto start = chrono::system_clock::now();
 
 
-
 int letters(int a = 65){  //  literki alfabetu od a = 97 lub A = 65 mozna to zmienic w argumencie..
 
 cout << "Startowy watek: " << this_thread::get_id() << " ==> " << chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now() - start).count() << endl;
@@ -77,6 +76,16 @@ int s2 = letters(97);
 cout << endl;
 cout << "get() ==> brak uzycia watkow chyba ze uzjemy get jak tutaj ===========> " << result1.get() << endl;
 cout << "ruszy jako oddzielny watek =========> " << s2 << endl;
+
+// wywolanie .get() na obiekcie future, niszczy ten obiekt..
+// wiec ponowne wywolanie, nie bedzie mozliwe..
+// .valid() sprawdza czy obiekt result1 jeszcze jest wazny..
+
+if(result1.valid()){
+    cout << "mozna go uzywac .get()" << endl;
+} else {
+    cout << "nie mozna go uzywac .get()" << endl;
+}
 
 return 0;
 }
