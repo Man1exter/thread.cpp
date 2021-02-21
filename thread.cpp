@@ -71,7 +71,7 @@ line(z,n);
 cout << endl;
 cout << endl;
 
-future<int> result1(async(launch::async,letters,65));
+future<int> result1(async(launch::async,letters,65)); // duze literki..
 int s2 = letters(97);
 cout << endl;
 cout << "get() ==> brak uzycia watkow chyba ze uzjemy get jak tutaj ===========> " << result1.get() << endl;
@@ -86,6 +86,11 @@ if(result1.valid()){
 } else {
     cout << "nie mozna go uzywac .get()" << endl;
 }
+
+future<int> result2(async(letters,97)); // male literki..
+result2.wait();
+
+cout << "Po wait() ==> " << chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now() - start).count() << endl;
 
 return 0;
 }
