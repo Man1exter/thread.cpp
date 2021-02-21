@@ -57,6 +57,10 @@ cout << "Konczacy watek drugi: " << this_thread::get_id() << " ==> " << chrono::
 
 }
 
+void setValue(int* a){
+    *a = 100;   // dostep watkow do wspolnej pamieci....
+}
+
 
 int main(){
     char z;
