@@ -50,7 +50,7 @@ cout << "Startowy watek drugi: " << this_thread::get_id() << " ==> " << chrono::
 
 while(n--){
 cout << z;
-this_thread::sleep_for(chrono::milliseconds(125));
+this_thread::sleep_for(chrono::milliseconds(25)); //czas czekania na wywolanie tych znakow..
 }
 
 cout << "Konczacy watek drugi: " << this_thread::get_id() << " ==> " << chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now() - start).count() << endl;
@@ -68,6 +68,15 @@ int main(){
 
 letters();
 line(z,n);
+
+cout << endl;
+cout << endl;
+
+future<int> result1(async(launch::async,letters,65));
+int s2 = letters(97);
+cout << endl;
+cout << "get() ==> brak uzycia watkow chyba ze uzjemy get jak tutaj ===========> " << result1.get() << endl;
+cout << "ruszy jako oddzielny watek =========> " << s2 << endl;
 
 return 0;
 }
