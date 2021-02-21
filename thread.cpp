@@ -69,7 +69,6 @@ letters();
 line(z,n);
 
 cout << endl;
-cout << endl;
 
 future<int> result1(async(launch::async,letters,65)); // duze literki..
 int s2 = letters(97);
@@ -81,6 +80,8 @@ cout << "ruszy jako oddzielny watek =========> " << s2 << endl;
 // wiec ponowne wywolanie, nie bedzie mozliwe..
 // .valid() sprawdza czy obiekt result1 jeszcze jest wazny..
 
+cout << endl;
+
 if(result1.valid()){
     cout << "mozna go uzywac .get()" << endl;
 } else {
@@ -88,9 +89,14 @@ if(result1.valid()){
 }
 
 future<int> result2(async(letters,97)); // male literki..
+cout << endl;
 result2.wait();
 
 cout << "Po wait() ==> " << chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now() - start).count() << endl;
+
+cout << endl;
+
+// line('*',50); - wydrukuje 50 gwiazek do funckji wyzej i nie przejdzie dalej..
 
 return 0;
 }
